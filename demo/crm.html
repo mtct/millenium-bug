@@ -1,310 +1,310 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>millenium-bug — demo CRM Segreteria</title>
+  <title>millenium-bug — Secretariat CRM demo</title>
   <link rel="stylesheet" href="../millenium-bug.css">
 </head>
 <body>
 
 <dialog open aria-labelledby="window-title">
   <header>
-    <h1 id="window-title">-- CRM Segreteria — Finestra di dialogo pagina Web</h1>
-    <button type="button" aria-label="Chiudi">✕</button>
+    <h1 id="window-title">-- Secretariat CRM — Web page dialog window</h1>
+    <button type="button" aria-label="Close">✕</button>
   </header>
 
   <form>
     <p>
-      <label for="tipo-pratica">Tipo Pratica</label>
+      <label for="tipo-pratica">Case Type</label>
       <select id="tipo-pratica">
-        <option selected>Richiesta Appuntamento</option>
-        <option>Protocollo in entrata</option>
-        <option>Convocazione riunione</option>
+        <option selected>Appointment Request</option>
+        <option>Incoming Protocol</option>
+        <option>Meeting Convocation</option>
       </select>
       <span class="mb-right"></span>
-      <label for="anno">Anno:</label>
+      <label for="anno">Year:</label>
       <select id="anno">
         <option selected>2026</option>
         <option>2025</option>
       </select>
-      <label for="codice">Cod.:</label>
+      <label for="codice">Code:</label>
       <input id="codice" size="5" value="00042" readonly>
-      <output>SEGRE</output>
-      <label for="progressivo">Progressivo:</label>
+      <output>SECRE</output>
+      <label for="progressivo">Sequence No.:</label>
       <input id="progressivo" size="6" value="17" readonly>
     </p>
 
     <p>
-      <span>Contatto</span>
+      <span>Contact</span>
       <em>ROSSI MARIO</em>
       <span class="mb-right"></span>
-      <span>Ufficio:</span>
-      <em>02 SEGRETERIA DIREZIONE GENERALE</em>
+      <span>Office:</span>
+      <em>02 GENERAL MANAGEMENT SECRETARIAT</em>
       <mark class="mb-ok">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mark>
-      <span>Data ricez.:</span>
+      <span>Recv. Date:</span>
       <em><time datetime="2026-06-03">03/06/2026</time></em>
     </p>
 
-    <nav aria-label="Sezioni pratica">
-      <a href="#">Anagrafica</a>
-      <a href="#" aria-current="page">Dati pratica</a>
-      <a href="#">Note e sintesi</a>
-      <a href="#">3 Appuntamenti</a>
-      <a href="#">12 Allegati</a>
-      <a href="#">5 eMail inviate</a>
-      <a href="#">2 Telefonate</a>
-      <a href="#">1 Solleciti</a>
-      <a href="#">Storico</a>
-      <a href="#">Azioni</a>
-      <a href="#">Tutte a scorrimento</a>
+    <nav aria-label="Case sections">
+      <a href="#">Master Data</a>
+      <a href="#" aria-current="page">Case Data</a>
+      <a href="#">Notes &amp; Summary</a>
+      <a href="#">3 Appointments</a>
+      <a href="#">12 Attachments</a>
+      <a href="#">5 eMails Sent</a>
+      <a href="#">2 Phone Calls</a>
+      <a href="#">1 Reminders</a>
+      <a href="#">History</a>
+      <a href="#">Actions</a>
+      <a href="#">All scrolling</a>
     </nav>
 
-    <section aria-label="Dati pratica">
+    <section aria-label="Case data">
       <p>
-        <label for="mezzo">Mezzo:</label>
+        <label for="mezzo">Channel:</label>
         <input id="mezzo" size="2" value="3" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca mezzo"></button>
-        <output>TELEFONO</output>
+        <button type="button" class="mb-lookup" aria-label="Search channel"></button>
+        <output>PHONE</output>
         <span class="mb-right"></span>
-        <label for="data">Data:</label>
+        <label for="data">Date:</label>
         <input id="data" size="10" value="03/06/2026" readonly>
-        <label for="d-ricezione">D.Ricezione:</label>
+        <label for="d-ricezione">Recv.Date:</label>
         <input id="d-ricezione" size="10" value="03/06/2026" readonly>
-        <label for="d-scad">D.Scad.:</label>
+        <label for="d-scad">Exp.Date:</label>
         <input id="d-scad" class="mb-due" size="10" value="17/06/2026" readonly>
-        <span>Tra gg:</span>
-        <mark>in attesa di conferma sala</mark>
+        <span>In days:</span>
+        <mark>awaiting room confirmation</mark>
       </p>
 
       <p>
-        <label for="d-evento">D.Evento:</label>
+        <label for="d-evento">Event Date:</label>
         <input id="d-evento" size="10">
-        <label for="ufficio">Ufficio:</label>
+        <label for="ufficio">Office:</label>
         <input id="ufficio" size="5" value="00210" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca ufficio"></button>
-        <input size="40" value="UFFICIO PROTOCOLLO GENERALE" readonly aria-label="Descrizione ufficio">
+        <button type="button" class="mb-lookup" aria-label="Search office"></button>
+        <input size="40" value="GENERAL PROTOCOL OFFICE" readonly aria-label="Office description">
         <span class="mb-right"></span>
-        <span>Resp.:</span>
+        <span>Mgr.:</span>
         <output>BIANCHI LUCIA</output>
       </p>
 
       <p>
-        <label for="servizio">Servizio:</label>
+        <label for="servizio">Service:</label>
         <input id="servizio" size="6" value="APP" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca servizio"></button>
-        <output>* - Appuntamenti</output>
+        <button type="button" class="mb-lookup" aria-label="Search service"></button>
+        <output>* - Appointments</output>
       </p>
 
       <p>
-        <label for="sotto-s">Sotto S.:</label>
+        <label for="sotto-s">Sub S.:</label>
         <input id="sotto-s" size="3" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca sotto servizio"></button>
+        <button type="button" class="mb-lookup" aria-label="Search sub-service"></button>
         <span class="mb-right"></span>
-        <label for="canale">Canale contatto:</label>
+        <label for="canale">Contact channel:</label>
         <input id="canale" class="mb-mark" size="2" value="1" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca canale"></button>
-        <output>Centralino</output>
+        <button type="button" class="mb-lookup" aria-label="Search channel"></button>
+        <output>Switchboard</output>
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="motivo">Motivo:</label>
+        <label for="motivo">Reason:</label>
         <input id="motivo" size="6" value="RiAp" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca motivo"></button>
-        <output>Richiesta appuntamento</output>
+        <button type="button" class="mb-lookup" aria-label="Search reason"></button>
+        <output>Appointment request</output>
         <span class="mb-right"></span>
-        <label><input type="checkbox"> <mark class="mb-ok">Contatto VIP</mark></label>
+        <label><input type="checkbox"> <mark class="mb-ok">VIP Contact</mark></label>
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="sotto-motivo">Sotto Motivo:</label>
+        <label for="sotto-motivo">Sub Reason:</label>
         <input id="sotto-motivo" size="2" value="2" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca sotto motivo"></button>
-        <output>urgenza e altro</output>
+        <button type="button" class="mb-lookup" aria-label="Search sub-reason"></button>
+        <output>urgency and other</output>
       </p>
 
       <p>
-        <label for="categoria">Categoria:</label>
+        <label for="categoria">Category:</label>
         <input id="categoria" class="mb-mark" size="4" value="ORD" readonly>
-        <button type="button" class="mb-lookup" aria-label="Cerca categoria"></button>
-        <output>Ordinaria</output>
+        <button type="button" class="mb-lookup" aria-label="Search category"></button>
+        <output>Ordinary</output>
         <span class="mb-right"></span>
-        <label for="prot-prec">Prot.prec.:</label>
-        <input id="prot-prec" size="6"> / <input size="4" aria-label="Protocollo precedente, anno">
-        <button type="button" class="mb-lookup" aria-label="Cerca protocollo"></button>
-        <button type="button" aria-label="Elimina collegamento">🗑</button>
+        <label for="prot-prec">Prev.Prot.:</label>
+        <input id="prot-prec" size="6"> / <input size="4" aria-label="Previous protocol, year">
+        <button type="button" class="mb-lookup" aria-label="Search protocol"></button>
+        <button type="button" aria-label="Delete link">🗑</button>
         <span class="mb-grow"></span>
-        <label for="riservata">Riservata:</label>
+        <label for="riservata">Confidential:</label>
         <select id="riservata">
           <option selected>No</option>
-          <option>Sì</option>
+          <option>Yes</option>
         </select>
       </p>
 
       <p>
-        <label for="ore-stimate">Ore stimate:</label>
-        <input id="ore-stimate" size="14" value="2,50" readonly>
+        <label for="ore-stimate">Estimated hours:</label>
+        <input id="ore-stimate" size="14" value="2.50" readonly>
         <span class="mb-right"></span>
-        <label for="priorita">Valutazione priorità:</label>
+        <label for="priorita">Priority rating:</label>
         <input id="priorita" size="16">
         <span class="mb-grow"></span>
-        <em>Documenti privacy mancanti!!</em>
+        <em>Privacy documents missing!!</em>
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="ore-consuntivate">Ore consuntivate:</label>
-        <input id="ore-consuntivate" size="14" value="0,00" readonly>
+        <label for="ore-consuntivate">Actual hours:</label>
+        <input id="ore-consuntivate" size="14" value="0.00" readonly>
         <span class="mb-right"></span>
-        <label for="ore-fatturate">Ore fatturate:</label>
-        <input id="ore-fatturate" size="14" value="0,00" readonly>
-        <label for="fatturato">Fatturato:</label>
+        <label for="ore-fatturate">Billed hours:</label>
+        <input id="ore-fatturate" size="14" value="0.00" readonly>
+        <label for="fatturato">Billed:</label>
         <input id="fatturato" size="5" disabled> %
-        <input size="10" aria-label="Data fatturazione">
+        <input size="10" aria-label="Billing date">
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="data-conferma">Data conferma:</label>
+        <label for="data-conferma">Confirmation date:</label>
         <input id="data-conferma" size="10" value="05/06/2026" readonly>
-        <label for="quota">Quota:</label>
-        <input id="quota" size="6" value="15,000" readonly> %
-        <label for="importo">Importo:</label>
-        <input id="importo" size="12" value="120,00" readonly>
+        <label for="quota">Rate:</label>
+        <input id="quota" size="6" value="15.000" readonly> %
+        <label for="importo">Amount:</label>
+        <input id="importo" size="12" value="120.00" readonly>
         <span class="mb-right"></span>
-        <label for="stato">Stato:</label>
+        <label for="stato">Status:</label>
         <select id="stato">
-          <option selected>In lavorazione</option>
-          <option>Chiusa</option>
+          <option selected>In progress</option>
+          <option>Closed</option>
         </select>
         <span class="mb-grow"></span>
-        <label for="fascia">Fascia oraria:</label>
+        <label for="fascia">Time slot:</label>
         <select id="fascia">
           <option selected></option>
-          <option>Mattina</option>
-          <option>Pomeriggio</option>
+          <option>Morning</option>
+          <option>Afternoon</option>
         </select>
       </p>
 
       <p>
-        <label for="note-pratica">Note pratica:</label>
-        <input id="note-pratica" class="mb-grow" value="Confermare sala riunioni piano 3 ( proiettore incluso ) e avvisare il referente entro le ore 12" readonly>
-        <button type="button" aria-label="Apri note">📄</button>
+        <label for="note-pratica">Case notes:</label>
+        <input id="note-pratica" class="mb-grow" value="Confirm meeting room floor 3 ( projector included ) and notify the contact by 12:00" readonly>
+        <button type="button" aria-label="Open notes">📄</button>
       </p>
 
       <p>
-        <label for="sede-app">Sede appuntamento:</label>
+        <label for="sede-app">Appointment location:</label>
         <select id="sede-app">
-          <option selected>Sala Riunioni A</option>
-          <option>Sala Riunioni B</option>
-          <option>Videoconferenza</option>
+          <option selected>Meeting Room A</option>
+          <option>Meeting Room B</option>
+          <option>Video conference</option>
         </select>
         <span class="mb-right"></span>
-        <span>Aggiornato il:</span>
+        <span>Updated on:</span>
         <output><time datetime="2026-06-05T09:14">05/06/2026 09:14</time></output>
-        <span>Da:</span>
-        <input size="40" value="VERDI PAOLA" readonly aria-label="Aggiornato da">
+        <span>By:</span>
+        <input size="40" value="VERDI PAOLA" readonly aria-label="Updated by">
       </p>
 
       <p>
-        <label><input type="checkbox"> Inviato a Direzione</label>
+        <label><input type="checkbox"> Sent to Management</label>
         <span class="mb-grow"></span>
-        <label><input type="checkbox"> Inviato a Resp. Area</label>
+        <label><input type="checkbox"> Sent to Area Mgr.</label>
         <span class="mb-grow"></span>
-        <label><input type="checkbox"> Inviato a Uff. Tecnico</label>
+        <label><input type="checkbox"> Sent to Tech. Office</label>
         <span class="mb-grow"></span>
-        <label><input type="checkbox"> Inviato a Reception</label>
+        <label><input type="checkbox"> Sent to Reception</label>
       </p>
 
       <p>
-        <label><input type="checkbox"> <mark>Promemoria via eMail</mark></label>
+        <label><input type="checkbox"> <mark>eMail reminder</mark></label>
         <span class="mb-grow"></span>
-        <label><input type="checkbox"> Privacy firmata</label>
+        <label><input type="checkbox"> Privacy signed</label>
         <span class="mb-grow"></span>
         <label><input type="checkbox"> <mark>Catering</mark></label>
         <span class="mb-grow"></span>
-        <label><input type="checkbox"> <mark class="mb-ok">Badge visitatore pronto</mark></label>
+        <label><input type="checkbox"> <mark class="mb-ok">Visitor badge ready</mark></label>
       </p>
 
       <p>
-        <label for="ultimo-esito">Ultimo esito:</label>
+        <label for="ultimo-esito">Last outcome:</label>
         <select id="ultimo-esito">
-          <option selected>Confermato</option>
-          <option>Rinviato</option>
-          <option>Annullato</option>
+          <option selected>Confirmed</option>
+          <option>Postponed</option>
+          <option>Cancelled</option>
         </select>
         <span class="mb-right"></span>
-        <label for="data-ultimo-esito">Data ultimo esito:</label>
+        <label for="data-ultimo-esito">Last outcome date:</label>
         <input id="data-ultimo-esito" size="10" value="05/06/2026" readonly>
-        <label for="data-promemoria">Data promemoria:</label>
+        <label for="data-promemoria">Reminder date:</label>
         <input id="data-promemoria" size="10" value="16/06/2026" readonly>
-        <span>A mezzo:</span>
+        <span>By means of:</span>
         <output>eMail</output>
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="d-sollecito">D.sollecito:</label>
+        <label for="d-sollecito">Chase date:</label>
         <input id="d-sollecito" size="10" value="10/06/2026" readonly>
         <span class="mb-right"></span>
-        <button type="button">Sollecito</button>
-        <span>IdTicket:</span>
+        <button type="button">Chase</button>
+        <span>TicketId:</span>
         <output>10588</output>
-        <span>Esito ticket:</span>
+        <span>Ticket outcome:</span>
         <output></output>
-        <span>Costi extra:</span>
-        <output>0,00</output>
+        <span>Extra costs:</span>
+        <output>0.00</output>
         <span class="mb-grow"></span>
       </p>
 
       <p>
-        <label for="dic-2025">Dicembre 2025:</label>
+        <label for="dic-2025">December 2025:</label>
         <input id="dic-2025" size="3" readonly>
         <span class="mb-right"></span>
-        <label for="dic-2026">Dicembre 2026:</label>
+        <label for="dic-2026">December 2026:</label>
         <input id="dic-2026" size="3" readonly>
-        <label for="check-gdpr">Check GDPR:</label>
+        <label for="check-gdpr">GDPR Check:</label>
         <select id="check-gdpr" class="mb-grow">
           <option selected></option>
-          <option>Conforme</option>
+          <option>Compliant</option>
         </select>
-        <label for="status-ref">Status Referente:</label>
+        <label for="status-ref">Contact Status:</label>
         <select id="status-ref" class="mb-grow">
           <option selected></option>
-          <option>Attivo</option>
+          <option>Active</option>
         </select>
       </p>
 
       <p>
-        <label for="nota-ref">Nota referente:</label>
+        <label for="nota-ref">Contact note:</label>
         <input id="nota-ref" class="mb-grow" readonly>
-        <button type="button" aria-label="Apri nota">📄</button>
+        <button type="button" aria-label="Open note">📄</button>
       </p>
 
       <p>
-        <span>Dati ultima scheda:</span>
-        <label for="esito-scheda">Esito:</label>
-        <input id="esito-scheda" size="12" value="Approvare" readonly>
-        <label for="data-agg">Data aggiornamento:</label>
+        <span>Last record data:</span>
+        <label for="esito-scheda">Outcome:</label>
+        <input id="esito-scheda" size="12" value="Approve" readonly>
+        <label for="data-agg">Update date:</label>
         <input id="data-agg" size="10" value="10/06/2026" readonly>
         <span class="mb-grow"></span>
-        <label>Ko Sala: <input type="checkbox" checked></label>
-        <label>Ko Catering: <input type="checkbox" checked></label>
-        <label>Ko Badge/Assenza: <input type="checkbox" checked></label>
-        <label>Esterni: <input type="checkbox" checked></label>
+        <label>Room KO: <input type="checkbox" checked></label>
+        <label>Catering KO: <input type="checkbox" checked></label>
+        <label>Badge/Absence KO: <input type="checkbox" checked></label>
+        <label>External: <input type="checkbox" checked></label>
       </p>
     </section>
 
     <menu>
-      <li><a href="index.html">← Guida componenti</a></li>
-      <li><button type="button">Cambio Sede</button></li>
-      <li><button type="button" disabled>Crea Pannello</button></li>
-      <li><button type="button" class="mb-right">Stampa Sintetica</button></li>
-      <li><button type="button">Stampa Completa</button></li>
+      <li><a href="index.html">← Component guide</a></li>
+      <li><button type="button">Change Location</button></li>
+      <li><button type="button" disabled>Create Panel</button></li>
+      <li><button type="button" class="mb-right">Summary Print</button></li>
+      <li><button type="button">Full Print</button></li>
       <li><button type="submit" disabled>OK</button></li>
-      <li><button type="button" class="mb-primary">Annulla</button></li>
+      <li><button type="button" class="mb-primary">Cancel</button></li>
     </menu>
   </form>
 </dialog>
