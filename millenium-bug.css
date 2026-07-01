@@ -1,0 +1,581 @@
+/*!
+ * millenium-bug.css — Retro banking vibes for your website
+ * Classless-first: gli elementi HTML semantici sono stilati direttamente,
+ * le classi .mb-* sono solo modificatori.
+ * https://github.com/matteocosta/millenium-bug
+ */
+
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+
+:root {
+  /* Palette gestionale web anni '90 (IE su Windows) */
+  --mb-window: #f5f4f1;          /* interno finestra: quasi bianco */
+  --mb-face: #d8d4cf;            /* grigio dei campi e dei bottoni */
+  --mb-face-light: #eceae6;
+  --mb-white: #ffffff;
+  --mb-shadow: #8a8880;
+  --mb-shadow-dark: #b3b0aa;
+  --mb-text: #000000;
+  --mb-desktop: #7d92a1;         /* sfondo dietro la finestra */
+
+  /* Campi */
+  --mb-field-bg: #ffffff;
+  --mb-field-text: #000000;
+
+  /* Tab */
+  --mb-tab: #1058a8;
+  --mb-tab-text: #ffffff;
+  --mb-tab-active: #e8501e;
+
+  /* Stati */
+  --mb-mark: #ffff00;            /* warning / evidenza */
+  --mb-ok: #39e639;              /* ok / attivo */
+  --mb-due: #b8e2e2;             /* scadenze */
+  --mb-alert: #e60000;           /* alert testuali */
+  --mb-primary: #8ed8d8;         /* bottone primario ciano */
+  --mb-link: #000080;
+
+  /* Font */
+  --mb-font: "Tahoma", "MS Sans Serif", "Segoe UI", Verdana, sans-serif;
+  --mb-font-size: 11px;
+  --mb-font-mono: "Courier New", Courier, monospace;
+  --mb-font-mono-size: 13px;
+
+  /* Bevel (bordi 3D sottili, da pagina web IE — non da app desktop) */
+  --mb-bevel-raised-border: var(--mb-white) var(--mb-shadow) var(--mb-shadow) var(--mb-white);
+  --mb-bevel-raised-inner: inset 1px 1px 0 var(--mb-face-light), inset -1px -1px 0 var(--mb-shadow-dark);
+  --mb-bevel-sunken-border: var(--mb-shadow) var(--mb-white) var(--mb-white) var(--mb-shadow);
+  --mb-bevel-sunken-inner: inset 1px 1px 0 var(--mb-shadow-dark);
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background: var(--mb-desktop);
+  color: var(--mb-text);
+  font-family: var(--mb-font);
+  font-size: var(--mb-font-size);
+  line-height: 1.35;
+  -webkit-font-smoothing: none;
+  scrollbar-color: var(--mb-face) var(--mb-face-light);
+  scrollbar-width: auto;
+}
+
+::selection {
+  background: var(--mb-link);
+  color: var(--mb-white);
+}
+
+/* Scrollbar squadrate stile Windows classico */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: repeating-conic-gradient(var(--mb-face-light) 0% 25%, var(--mb-white) 0% 50%) 0 0 / 2px 2px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-button {
+  background: var(--mb-face);
+  border: 1px solid;
+  border-color: var(--mb-bevel-raised-border);
+  box-shadow: var(--mb-bevel-raised-inner);
+}
+
+a {
+  color: var(--mb-link);
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 1px dotted var(--mb-text);
+  outline-offset: -3px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5em;
+  font-size: var(--mb-font-size);
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--mb-shadow);
+  border-bottom: 1px solid var(--mb-white);
+  margin: 8px 0;
+}
+
+p {
+  margin: 0 0 6px;
+}
+
+/* Valori "macchina": sempre monospace */
+code, kbd, samp, time, data, output {
+  font-family: var(--mb-font-mono);
+  font-size: var(--mb-font-mono-size);
+  font-weight: bold;
+}
+
+/* Blocchi di codice: pannello incassato bianco */
+pre {
+  margin: 4px 0 8px;
+  padding: 6px 8px;
+  background: var(--mb-field-bg);
+  border: 1px solid;
+  border-color: var(--mb-bevel-sunken-border);
+  box-shadow: var(--mb-bevel-sunken-inner);
+  overflow-x: auto;
+  font-family: var(--mb-font-mono);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+pre code {
+  font-size: inherit;
+  font-weight: normal;
+}
+
+/* Esempio incorniciato con didascalia */
+figure {
+  margin: 4px 0 8px;
+  padding: 8px;
+  background: var(--mb-window);
+  border: 1px dotted var(--mb-shadow);
+}
+
+figcaption {
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   3. FINESTRA — <dialog> oppure .mb-window
+   ========================================================================== */
+
+dialog,
+.mb-window {
+  display: block;
+  position: static;
+  width: min(1100px, calc(100vw - 32px));
+  margin: 16px auto;
+  padding: 2px;
+  background: var(--mb-window);
+  color: var(--mb-text);
+  border: 1px solid var(--mb-shadow);
+  box-shadow: 2px 2px 0 rgb(0 0 0 / 25%);
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+/* Title bar */
+dialog > header,
+.mb-window > header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  margin-bottom: 4px;
+  background: var(--mb-white);
+  border-bottom: 1px solid var(--mb-shadow-dark);
+}
+
+dialog > header :is(h1, h2, h3),
+.mb-window > header :is(h1, h2, h3) {
+  flex: 1;
+  margin: 0;
+  font-size: var(--mb-font-size);
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+dialog > header button,
+.mb-window > header button {
+  min-width: 18px;
+  height: 16px;
+  padding: 0 3px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Corpo della finestra */
+dialog > form,
+dialog > main,
+.mb-window > form,
+.mb-window > main {
+  padding: 4px 6px;
+}
+
+/* ==========================================================================
+   4. TAB — <nav> con <a> o <button>; stato attivo via aria-*
+   ========================================================================== */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 2px 0;
+}
+
+nav :is(a, button) {
+  padding: 2px 8px 3px;
+  background: var(--mb-tab);
+  color: var(--mb-tab-text);
+  font-family: var(--mb-font);
+  font-size: var(--mb-font-size);
+  font-weight: bold;
+  text-decoration: underline;
+  border: 0;
+  box-shadow: none;
+  min-height: 0;
+  cursor: pointer;
+}
+
+nav :is(a, button):is([aria-current], [aria-selected="true"]) {
+  background: var(--mb-tab-active);
+}
+
+/* Pannello contenuto sotto i tab */
+nav + section,
+.mb-panel {
+  margin: 0 0 10px;
+  padding: 8px;
+  background: var(--mb-window);
+  border: 1px solid var(--mb-tab-active);
+}
+
+/* ==========================================================================
+   5. FORM
+   ========================================================================== */
+
+fieldset {
+  margin: 0 0 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--mb-shadow);
+}
+
+legend {
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+label {
+  font-family: var(--mb-font);
+  font-size: var(--mb-font-size);
+  white-space: nowrap;
+}
+
+/* Riga densa label+campi: <p> dentro form oppure .mb-row */
+form p,
+.mb-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin: 0 0 5px;
+}
+
+/* Campi di testo */
+input,
+select,
+textarea {
+  padding: 1px 3px;
+  background: var(--mb-field-bg);
+  color: var(--mb-field-text);
+  font-family: var(--mb-font-mono);
+  font-size: var(--mb-font-mono-size);
+  font-weight: bold;
+  border: 1px solid;
+  border-color: var(--mb-bevel-sunken-border);
+  box-shadow: var(--mb-bevel-sunken-inner);
+  border-radius: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px dotted var(--mb-text);
+  outline-offset: 0;
+}
+
+input[readonly],
+textarea[readonly],
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: var(--mb-face);
+  color: var(--mb-text);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Select con freccia squadrata */
+select {
+  appearance: none;
+  padding-right: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect width="16" height="16" fill="%23d8d4cf"/><path d="M0 0h15v1H1v14H0z" fill="%23ffffff"/><path d="M15 0v16H0v-1h14V0z" fill="%238a8880"/><path d="M4 6h8l-4 5z" fill="%23000000"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1px center;
+}
+
+/* Checkbox e radio squadrati */
+input[type="checkbox"],
+input[type="radio"] {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  margin: 0 3px 0 0;
+  padding: 0;
+  vertical-align: -2px;
+  background: var(--mb-field-bg);
+  display: inline-grid;
+  place-content: center;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"><path d="M1 4l2.5 2.5L8 1.5 9 3 3.5 8.5 0 5z" fill="%23000000"/></svg>') no-repeat center;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mb-text);
+}
+
+/* Valore calcolato in sola lettura: mono, senza cornice di campo */
+
+/* ==========================================================================
+   6. BOTTONI
+   ========================================================================== */
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: 23px;
+  padding: 2px 12px;
+  background: var(--mb-face);
+  color: var(--mb-text);
+  font-family: var(--mb-font);
+  font-size: var(--mb-font-size);
+  text-transform: uppercase;
+  border: 1px solid;
+  border-color: var(--mb-bevel-raised-border);
+  box-shadow: var(--mb-bevel-raised-inner);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+  border-color: var(--mb-bevel-sunken-border);
+  box-shadow: var(--mb-bevel-sunken-inner);
+  padding: 3px 11px 1px 13px; /* il contenuto "affonda" di 1px come su Win9x */
+}
+
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled {
+  color: var(--mb-shadow);
+  text-shadow: 1px 1px 0 var(--mb-white);
+  cursor: default;
+}
+
+button.mb-primary {
+  background: var(--mb-primary);
+}
+
+/* Bottone lookup "…" accanto ai campi */
+button.mb-lookup {
+  min-height: 0;
+  min-width: 18px;
+  padding: 0 2px;
+  height: 19px;
+  font-weight: bold;
+  text-transform: none;
+}
+
+button.mb-lookup::before {
+  content: "…";
+}
+
+/* Bottoniera in fondo alla finestra: <menu> */
+menu {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0 0;
+  padding: 6px 4px 4px;
+  border-top: 1px solid var(--mb-shadow);
+  box-shadow: 0 1px 0 var(--mb-white) inset;
+  list-style: none;
+}
+
+menu li {
+  display: contents;
+}
+
+/* ==========================================================================
+   7. SEMANTICA DI STATO
+   ========================================================================== */
+
+/* Evidenza gialla (warning) */
+mark {
+  background: var(--mb-mark);
+  color: var(--mb-text);
+  padding: 0 2px;
+}
+
+/* Verde: ok / attivo */
+ins,
+mark.mb-ok {
+  background: var(--mb-ok);
+  color: var(--mb-text);
+  text-decoration: none;
+  padding: 0 2px;
+}
+
+/* Ciano: scadenze */
+mark.mb-due {
+  background: var(--mb-due);
+}
+
+/* Rosso bold: messaggi critici */
+em,
+.mb-alert {
+  color: var(--mb-alert);
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Rosso monospace: valori critici nei campi */
+input.mb-alert,
+mark .mb-alert {
+  color: var(--mb-alert);
+}
+
+del {
+  color: var(--mb-shadow);
+}
+
+/* Campi evidenziati: <mark> che avvolge un <input> */
+mark > input,
+mark.mb-ok > input,
+mark.mb-due > input {
+  background: inherit;
+}
+
+input.mb-mark    { background: var(--mb-mark); }
+input.mb-ok      { background: var(--mb-ok); }
+input.mb-due     { background: var(--mb-due); }
+
+/* ==========================================================================
+   8. TABELLE
+   ========================================================================== */
+
+table {
+  border-collapse: collapse;
+  background: var(--mb-field-bg);
+  border: 1px solid;
+  border-color: var(--mb-bevel-sunken-border);
+}
+
+th, td {
+  padding: 2px 6px;
+  border: 1px solid var(--mb-shadow);
+  font-size: var(--mb-font-size);
+  text-align: left;
+}
+
+th {
+  background: var(--mb-face);
+  font-weight: bold;
+}
+
+td {
+  font-family: var(--mb-font-mono);
+  font-size: var(--mb-font-mono-size);
+}
+
+tbody tr:hover {
+  background: var(--mb-link);
+  color: var(--mb-white);
+}
+
+/* ==========================================================================
+   9. EXTRA RETRO
+   ========================================================================== */
+
+/* Barra di avanzamento a blocchi */
+progress {
+  appearance: none;
+  width: 200px;
+  height: 16px;
+  background: var(--mb-field-bg);
+  border: 1px solid;
+  border-color: var(--mb-bevel-sunken-border);
+  box-shadow: var(--mb-bevel-sunken-inner);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--mb-field-bg);
+}
+
+progress::-webkit-progress-value {
+  background: repeating-linear-gradient(90deg, var(--mb-link) 0 9px, var(--mb-field-bg) 9px 11px);
+}
+
+progress::-moz-progress-bar {
+  background: repeating-linear-gradient(90deg, var(--mb-link) 0 9px, var(--mb-field-bg) 9px 11px);
+}
+
+details {
+  margin: 0 0 6px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   10. UTILITIES
+   ========================================================================== */
+
+.mb-right { margin-left: auto; }
+.mb-grow  { flex: 1; }

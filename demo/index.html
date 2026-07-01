@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>millenium-bug — guida ai componenti</title>
+  <link rel="stylesheet" href="../millenium-bug.css">
+</head>
+<body>
+
+<dialog open aria-labelledby="window-title">
+  <header>
+    <h1 id="window-title">-- millenium-bug v1.0 — Guida ai componenti — Finestra di dialogo pagina Web</h1>
+    <button type="button" aria-label="Chiudi">✕</button>
+  </header>
+
+  <main>
+    <p>
+      <strong>millenium-bug</strong> è una libreria CSS <i>classless-first</i>:
+      scrivi HTML semantico e ottieni il gestionale anni '90.
+      Le classi <code>.mb-*</code> sono solo modificatori opzionali.
+    </p>
+    <pre><code>&lt;link rel="stylesheet" href="millenium-bug.css"&gt;</code></pre>
+
+    <nav aria-label="Componenti">
+      <a href="#finestra" aria-current="page">Finestra</a>
+      <a href="#tab">Tab</a>
+      <a href="#form">Righe di form</a>
+      <a href="#campi">Campi</a>
+      <a href="#stati">Stati</a>
+      <a href="#bottoni">Bottoni</a>
+      <a href="#tabelle">Tabelle</a>
+      <a href="#extra">Extra</a>
+      <a href="#theming">Theming</a>
+      <a href="crm.html">Esempio completo →</a>
+    </nav>
+
+    <section id="finestra" aria-labelledby="finestra-h">
+      <h2 id="finestra-h">Finestra</h2>
+      <p>
+        Usa <code>&lt;dialog open&gt;</code> (o <code>.mb-window</code>) con un
+        <code>&lt;header&gt;</code> come barra del titolo. Questa pagina stessa è una finestra.
+      </p>
+      <pre><code>&lt;dialog open&gt;
+  &lt;header&gt;
+    &lt;h1&gt;-- Titolo finestra&lt;/h1&gt;
+    &lt;button aria-label="Chiudi"&gt;✕&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;main&gt;…contenuto…&lt;/main&gt;
+&lt;/dialog&gt;</code></pre>
+    </section>
+
+    <section id="tab" aria-labelledby="tab-h">
+      <h2 id="tab-h">Tab</h2>
+      <p>
+        Un <code>&lt;nav&gt;</code> con link o bottoni. Il tab attivo si dichiara con
+        <code>aria-current</code> (o <code>aria-selected="true"</code>), non con classi.
+        La <code>&lt;section&gt;</code> immediatamente successiva diventa il pannello con il filo arancio.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <nav aria-label="Esempio tab">
+          <a href="#tab">Anagrafica</a>
+          <a href="#tab" aria-current="page">Dati pratica</a>
+          <a href="#tab">12 Allegati</a>
+          <a href="#tab">Storico</a>
+        </nav>
+        <section>
+          <p>Contenuto del pannello "Dati pratica".</p>
+        </section>
+      </figure>
+      <pre><code>&lt;nav&gt;
+  &lt;a href="#"&gt;Anagrafica&lt;/a&gt;
+  &lt;a href="#" aria-current="page"&gt;Dati pratica&lt;/a&gt;
+  &lt;a href="#"&gt;12 Allegati&lt;/a&gt;
+&lt;/nav&gt;
+&lt;section&gt;…pannello…&lt;/section&gt;</code></pre>
+    </section>
+
+    <section id="form" aria-labelledby="form-h">
+      <h2 id="form-h">Righe di form</h2>
+      <p>
+        Ogni <code>&lt;p&gt;</code> dentro un <code>&lt;form&gt;</code> è una riga densa
+        (flex) di label e campi. La larghezza dei campi si controlla con l'attributo
+        <code>size</code>, come si faceva una volta. Il bottone lookup è
+        <code>&lt;button class="mb-lookup"&gt;</code>, le descrizioni decodificate sono
+        <code>&lt;output&gt;</code>. Utilities: <code>.mb-right</code> spinge a destra,
+        <code>.mb-grow</code> occupa lo spazio residuo.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <form>
+          <p>
+            <label for="es-cod">Codice:</label>
+            <input id="es-cod" size="6" value="00042" readonly>
+            <button type="button" class="mb-lookup" aria-label="Cerca codice"></button>
+            <output>SEGRETERIA GENERALE</output>
+            <span class="mb-right"></span>
+            <label for="es-scad">D.Scad.:</label>
+            <input id="es-scad" class="mb-due" size="10" value="17/06/2026" readonly>
+          </p>
+          <p>
+            <label for="es-note">Note pratica:</label>
+            <input id="es-note" class="mb-grow" value="Confermare sala riunioni piano 3" readonly>
+            <button type="button" aria-label="Apri note">📄</button>
+          </p>
+        </form>
+      </figure>
+      <pre><code>&lt;form&gt;
+  &lt;p&gt;
+    &lt;label for="cod"&gt;Codice:&lt;/label&gt;
+    &lt;input id="cod" size="6" value="00042" readonly&gt;
+    &lt;button class="mb-lookup" aria-label="Cerca"&gt;&lt;/button&gt;
+    &lt;output&gt;SEGRETERIA GENERALE&lt;/output&gt;
+  &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+
+    <section id="campi" aria-labelledby="campi-h">
+      <h2 id="campi-h">Campi</h2>
+      <p>
+        <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> e <code>&lt;textarea&gt;</code>
+        hanno il bordo incassato e il valore in monospace bold.
+        <code>readonly</code> e <code>disabled</code> tornano grigi da soli.
+        Checkbox e radio sono squadrati come da ordinanza.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <form>
+          <p>
+            <label for="es-edit">Editabile:</label>
+            <input id="es-edit" size="12" value="abc 123">
+            <label for="es-ro">Readonly:</label>
+            <input id="es-ro" size="12" value="00042" readonly>
+            <label for="es-dis">Disabled:</label>
+            <input id="es-dis" size="12" value="n/d" disabled>
+          </p>
+          <p>
+            <label for="es-sel">Select:</label>
+            <select id="es-sel">
+              <option selected>In lavorazione</option>
+              <option>Chiusa</option>
+            </select>
+            <label><input type="checkbox" checked> Privacy firmata</label>
+            <label><input type="checkbox"> Catering</label>
+            <label><input type="radio" name="es-fascia" checked> Mattina</label>
+            <label><input type="radio" name="es-fascia"> Pomeriggio</label>
+          </p>
+          <p>
+            <label for="es-txt">Textarea:</label>
+            <textarea id="es-txt" rows="2" cols="48">Avvisare il referente entro le ore 12.</textarea>
+          </p>
+        </form>
+      </figure>
+      <pre><code>&lt;input size="12" value="00042" readonly&gt;
+&lt;select&gt;&lt;option&gt;In lavorazione&lt;/option&gt;&lt;/select&gt;
+&lt;label&gt;&lt;input type="checkbox" checked&gt; Privacy firmata&lt;/label&gt;</code></pre>
+    </section>
+
+    <section id="stati" aria-labelledby="stati-h">
+      <h2 id="stati-h">Stati ed evidenziazioni</h2>
+      <p>
+        Il cuore semantico della libreria: <code>&lt;mark&gt;</code> è il giallo warning,
+        <code>&lt;ins&gt;</code> il verde ok, <code>&lt;em&gt;</code> l'alert rosso bold.
+        Le date sono <code>&lt;time&gt;</code>, i valori calcolati <code>&lt;output&gt;</code>.
+        Per colorare un campo, le varianti <code>.mb-mark</code> / <code>.mb-ok</code> /
+        <code>.mb-due</code> direttamente sull'input.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <p>
+          <mark>in attesa di conferma sala</mark>
+          <ins>Confermato</ins>
+          <mark class="mb-due">scade il 17/06/2026</mark>
+          <em>Documenti privacy mancanti!!</em>
+        </p>
+        <form>
+          <p>
+            <label for="es-cat">Categoria:</label>
+            <input id="es-cat" class="mb-mark" size="4" value="ORD" readonly>
+            <label for="es-can">Canale:</label>
+            <input id="es-can" class="mb-ok" size="2" value="1" readonly>
+            <label for="es-due2">D.Scad.:</label>
+            <input id="es-due2" class="mb-due" size="10" value="17/06/2026" readonly>
+            <span>Aggiornato il:</span>
+            <output><time datetime="2026-06-05T09:14">05/06/2026 09:14</time></output>
+          </p>
+        </form>
+      </figure>
+      <pre><code>&lt;mark&gt;in attesa di conferma sala&lt;/mark&gt;
+&lt;ins&gt;Confermato&lt;/ins&gt;
+&lt;em&gt;Documenti privacy mancanti!!&lt;/em&gt;
+&lt;input class="mb-due" value="17/06/2026" readonly&gt;
+&lt;output&gt;&lt;time datetime="2026-06-05"&gt;05/06/2026&lt;/time&gt;&lt;/output&gt;</code></pre>
+    </section>
+
+    <section id="bottoni" aria-labelledby="bottoni-h">
+      <h2 id="bottoni-h">Bottoni e bottoniera</h2>
+      <p>
+        I <code>&lt;button&gt;</code> sono in rilievo 3D e "affondano" alla pressione.
+        <code>.mb-primary</code> è la variante ciano. La bottoniera in fondo alla
+        finestra è un <code>&lt;menu&gt;</code>: i bottoni dopo <code>.mb-right</code>
+        si allineano a destra.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <menu>
+          <li><button type="button">Cambio Sede</button></li>
+          <li><button type="button" disabled>Crea Pannello</button></li>
+          <li><button type="button" class="mb-right">Stampa Sintetica</button></li>
+          <li><button type="button" disabled>OK</button></li>
+          <li><button type="button" class="mb-primary">Annulla</button></li>
+        </menu>
+      </figure>
+      <pre><code>&lt;menu&gt;
+  &lt;li&gt;&lt;button&gt;Cambio Sede&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button class="mb-right"&gt;Stampa Sintetica&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button disabled&gt;OK&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button class="mb-primary"&gt;Annulla&lt;/button&gt;&lt;/li&gt;
+&lt;/menu&gt;</code></pre>
+    </section>
+
+    <section id="tabelle" aria-labelledby="tabelle-h">
+      <h2 id="tabelle-h">Tabelle</h2>
+      <p>
+        Le <code>&lt;table&gt;</code> hanno griglia piatta, intestazioni grigie e
+        righe che si selezionano in blu navy al passaggio del mouse.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <table>
+          <thead>
+            <tr><th>Prog.</th><th>Data</th><th>Oggetto</th><th>Esito</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>15</td><td>21/05/2026</td><td>RIUNIONE BUDGET</td><td>CONFERMATO</td></tr>
+            <tr><td>16</td><td>28/05/2026</td><td>VISITA FORNITORE</td><td>RINVIATO</td></tr>
+            <tr><td>17</td><td>03/06/2026</td><td>RICHIESTA APPUNTAMENTO</td><td></td></tr>
+          </tbody>
+        </table>
+      </figure>
+      <pre><code>&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Prog.&lt;/th&gt;&lt;th&gt;Data&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;03/06/2026&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+    </section>
+
+    <section id="extra" aria-labelledby="extra-h">
+      <h2 id="extra-h">Extra retro</h2>
+      <p>
+        Avanzamento a blocchi con <code>&lt;progress&gt;</code>, separatori
+        <code>&lt;hr&gt;</code> a scanalatura, gruppi richiudibili con
+        <code>&lt;details&gt;</code>, raggruppamenti con <code>&lt;fieldset&gt;</code>.
+      </p>
+      <figure>
+        <figcaption>Esempio</figcaption>
+        <p>
+          <span>Avanzamento pratica:</span>
+          <progress max="100" value="60">60%</progress>
+          <output>60%</output>
+        </p>
+        <hr>
+        <details open>
+          <summary>Dati ultima scheda</summary>
+          <fieldset>
+            <legend>Esiti</legend>
+            <p>
+              <label>Ko Sala: <input type="checkbox" checked></label>
+              <label>Ko Catering: <input type="checkbox" checked></label>
+              <label>Esterni: <input type="checkbox"></label>
+            </p>
+          </fieldset>
+        </details>
+      </figure>
+      <pre><code>&lt;progress max="100" value="60"&gt;60%&lt;/progress&gt;
+&lt;details open&gt;
+  &lt;summary&gt;Dati ultima scheda&lt;/summary&gt;
+  &lt;fieldset&gt;&lt;legend&gt;Esiti&lt;/legend&gt;…&lt;/fieldset&gt;
+&lt;/details&gt;</code></pre>
+    </section>
+
+    <section id="theming" aria-labelledby="theming-h">
+      <h2 id="theming-h">Theming</h2>
+      <p>
+        Tutti i colori sono custom properties con prefisso <code>--mb-</code>:
+        sovrascrivile su <code>:root</code> per cambiare epoca senza toccare la libreria.
+      </p>
+      <pre><code>:root {
+  --mb-window: #f5f4f1;     /* interno finestra quasi bianco */
+  --mb-face: #d8d4cf;       /* grigio di campi e bottoni */
+  --mb-tab: #1058a8;        /* tab blu */
+  --mb-tab-active: #e8501e; /* tab attivo arancio */
+  --mb-mark: #ffff00;       /* evidenza gialla */
+  --mb-ok: #39e639;         /* evidenza verde */
+  --mb-due: #b8e2e2;        /* evidenza ciano */
+  --mb-alert: #e60000;      /* alert rosso */
+  --mb-primary: #8ed8d8;    /* bottone primario ciano */
+}</code></pre>
+    </section>
+
+    <menu>
+      <li><a class="mb-right" href="../README.md">Documentazione</a></li>
+      <li><a href="crm.html">Esempio completo: scheda CRM Segreteria →</a></li>
+    </menu>
+  </main>
+</dialog>
+
+</body>
+</html>
