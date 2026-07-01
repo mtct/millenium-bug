@@ -228,6 +228,22 @@ dialog > main,
   padding: 4px 6px;
 }
 
+/* Finestra modale: aperta via showModal(). Centrata, larga quanto il contenuto. */
+dialog:modal {
+  position: fixed;
+  inset: 0;
+  width: auto;
+  max-width: min(680px, calc(100vw - 32px));
+  margin: auto;
+}
+
+/* Sfondo dietro la modale: il "desktop" grigio-azzurro tramato */
+dialog::backdrop {
+  background:
+    repeating-linear-gradient(45deg, rgb(0 0 0 / 8%) 0 1px, transparent 1px 3px),
+    var(--mb-desktop);
+}
+
 /* ==========================================================================
    4. TAB — <nav> con <a> o <button>; stato attivo via aria-*
    ========================================================================== */
@@ -571,6 +587,83 @@ details {
 summary {
   cursor: pointer;
   font-weight: bold;
+}
+
+/* Menu a tendina: <details class="mb-dropdown"> con <summary> + <menu> */
+details.mb-dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+details.mb-dropdown > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 3px;
+  background: var(--mb-face);
+  color: var(--mb-text);
+  font-family: var(--mb-font);
+  font-size: var(--mb-font-size);
+  font-weight: normal;
+  border: 1px solid;
+  border-color: var(--mb-bevel-raised-border);
+  box-shadow: var(--mb-bevel-raised-inner);
+}
+
+details.mb-dropdown > summary::-webkit-details-marker,
+details.mb-dropdown > summary::marker {
+  display: none;
+  content: "";
+}
+
+/* Freccia squadrata dopo l'etichetta */
+details.mb-dropdown > summary::after {
+  content: "▾";
+  font-size: 9px;
+}
+
+/* Summary "affondato" quando il menu è aperto */
+details.mb-dropdown[open] > summary {
+  border-color: var(--mb-bevel-sunken-border);
+  box-shadow: var(--mb-bevel-sunken-inner);
+}
+
+/* Il pannello che compare: <menu> in verticale, flottante */
+details.mb-dropdown > menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 100%;
+  width: max-content;
+  margin: 1px 0 0;
+  padding: 2px;
+  background: var(--mb-face);
+  border: 1px solid;
+  border-color: var(--mb-bevel-raised-border);
+  box-shadow: var(--mb-bevel-raised-inner), 2px 2px 0 rgb(0 0 0 / 25%);
+}
+
+details.mb-dropdown > menu button {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 3px 18px 3px 8px;
+  text-align: left;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  font-weight: normal;
+}
+
+details.mb-dropdown > menu button:hover:not(:disabled) {
+  background: var(--mb-link);
+  color: var(--mb-white);
 }
 
 /* ==========================================================================

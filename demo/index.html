@@ -49,6 +49,7 @@
       <a href="#campi">Fields</a>
       <a href="#stati">States</a>
       <a href="#bottoni">Buttons</a>
+      <a href="#interattivi">Modals &amp; dropdowns</a>
       <a href="#tabelle">Tables</a>
       <a href="#extra">Extra</a>
       <a href="#theming">Theming</a>
@@ -240,6 +241,44 @@
 &lt;/menu&gt;</code></pre>
     </section>
 
+    <section id="interattivi" aria-labelledby="interattivi-h">
+      <h2 id="interattivi-h">Modals and dropdowns</h2>
+      <p>
+        A <code>&lt;dialog&gt;</code> opened with <code>showModal()</code> becomes a centered
+        modal window with a retro tramato backdrop — no extra markup, the library styles
+        <code>dialog:modal</code> and <code>::backdrop</code> for you. A
+        <code>&lt;details class="mb-dropdown"&gt;</code> with a <code>&lt;summary&gt;</code>
+        and a <code>&lt;menu&gt;</code> is a drop-down menu that needs no JavaScript at all.
+      </p>
+      <figure>
+        <figcaption>Example — click to open</figcaption>
+        <p>
+          <button type="button" data-open="dlg-confirm">Confirm case…</button>
+          <button type="button" data-open="dlg-lookup">Office lookup…</button>
+          <details class="mb-dropdown">
+            <summary>Actions</summary>
+            <menu>
+              <li><button type="button" data-open="dlg-confirm">Confirm…</button></li>
+              <li><button type="button">Duplicate</button></li>
+              <li><button type="button">Print summary</button></li>
+              <li><button type="button" disabled>Archive (locked)</button></li>
+            </menu>
+          </details>
+        </p>
+      </figure>
+      <pre><code>&lt;button data-open="dlg"&gt;Open…&lt;/button&gt;
+&lt;dialog id="dlg"&gt;…&lt;/dialog&gt;   &lt;!-- dlg.showModal() --&gt;
+
+&lt;details class="mb-dropdown"&gt;
+  &lt;summary&gt;Actions&lt;/summary&gt;
+  &lt;menu&gt;&lt;li&gt;&lt;button&gt;Print&lt;/button&gt;&lt;/li&gt;…&lt;/menu&gt;
+&lt;/details&gt;</code></pre>
+      <p>
+        The dropdown is pure HTML/CSS (native <code>&lt;details&gt;</code> toggle).
+        Only opening a <em>modal</em> needs one line of script — the library ships zero JS.
+      </p>
+    </section>
+
     <section id="tabelle" aria-labelledby="tabelle-h">
       <h2 id="tabelle-h">Tables</h2>
       <p>
@@ -324,6 +363,87 @@
     </menu>
   </main>
 </dialog>
+
+<!-- Modal windows: hidden until opened with showModal() -->
+<dialog id="dlg-confirm" aria-labelledby="dlg-confirm-h">
+  <header>
+    <h1 id="dlg-confirm-h">-- Confirm case</h1>
+    <button type="button" aria-label="Close" data-close>✕</button>
+  </header>
+  <form method="dialog">
+    <section>
+      <p><mark>You are about to confirm case 00042 / 2026.</mark></p>
+      <p>
+        <label for="dlg-note">Note:</label>
+        <input id="dlg-note" class="mb-grow" value="Meeting Room A confirmed">
+      </p>
+      <p><em>This action cannot be undone (it's a demo — it totally can).</em></p>
+    </section>
+    <menu>
+      <li><button type="submit" value="ok" class="mb-right mb-primary">OK</button></li>
+      <li><button type="submit" value="cancel">Cancel</button></li>
+    </menu>
+  </form>
+</dialog>
+
+<dialog id="dlg-lookup" aria-labelledby="dlg-lookup-h">
+  <header>
+    <h1 id="dlg-lookup-h">-- Office lookup</h1>
+    <button type="button" aria-label="Close" data-close>✕</button>
+  </header>
+  <form method="dialog">
+    <section>
+      <p>
+        <label for="lk-q">Search:</label>
+        <input id="lk-q" class="mb-grow" value="SEGR">
+        <button type="button" class="mb-lookup" aria-label="Search"></button>
+      </p>
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Office</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>00210</td><td>GENERAL PROTOCOL OFFICE</td></tr>
+          <tr><td>02</td><td>GENERAL MANAGEMENT SECRETARIAT</td></tr>
+          <tr><td>07</td><td>ARCHIVE AND FILING</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <menu>
+      <li><button type="submit" value="ok" class="mb-right mb-primary">Select</button></li>
+      <li><button type="submit" value="cancel">Cancel</button></li>
+    </menu>
+  </form>
+</dialog>
+
+<script>
+  // Demo-only glue. The millenium-bug library itself ships zero JavaScript:
+  // dropdowns are native <details>, and dialogs only need showModal() to open.
+  document.addEventListener('click', (e) => {
+    // Open a modal
+    const opener = e.target.closest('[data-open]');
+    if (opener) {
+      document.getElementById(opener.dataset.open)?.showModal();
+    }
+    // Close a modal from the header ✕
+    else if (e.target.closest('[data-close]')) {
+      e.target.closest('dialog')?.close();
+    }
+    // Close open dropdowns after a menu choice or a click outside
+    document.querySelectorAll('details.mb-dropdown[open]').forEach((d) => {
+      const onSummary = e.target.closest('summary');
+      if (onSummary && d.contains(onSummary)) return; // let the native toggle run
+      if (!d.contains(e.target) || e.target.closest('menu button')) {
+        d.removeAttribute('open');
+      }
+    });
+  });
+
+  // Click on the backdrop closes the modal (modals are the dialogs that start closed)
+  document.querySelectorAll('dialog:not([open])').forEach((d) => {
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  });
+</script>
 
 </body>
 </html>
